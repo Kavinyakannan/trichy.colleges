@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colleges</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Colleges Offering Selected Department</h1>
+        <ul id="collegeList"></ul>
+    </div>
+
+    <script>
+        const colleges = {
+            law: [
+                'National Law School of India University, Trichy',
+                'Bharathidasan Law College, Trichy',
+                'Trichy Institute of Law Studies',
+                'St. Joseph’s Law College',
+                'Government Law College, Trichy',
+                'Loyola Law School',
+                'Saranathan Law College',
+                'Sri Venkateswara Law College',
+                'Ponnaiyah Ramajayam Law School',
+                'M.A.M. Law College'
+            ],
+            engineering: [
+                'National Institute of Technology (NIT) Trichy',
+                'Bharathidasan Institute of Technology',
+                'Saranathan College of Engineering',
+                'Ponnaiyah Ramajayam Institute of Science & Technology',
+                'Sri Venkateswara College of Engineering',
+                'M.A.M. College of Engineering',
+                'SRM College, Trichy',
+                'K.Ramakrishnan College of Engineering',
+                'Renganayagi Varatharaj College of Engineering',
+                'Gnanamani College of Technology',
+                'K.S.R. College of Engineering'
+            ],
+            medical: [
+                'Trichy Medical College',
+                'Bharathidasan University Medical College',
+                'Sree Balaji Medical College',
+                'Sri Ramachandra Medical College',
+                'Government Medical College, Trichy',
+                'Loyola Medical College',
+                'Ponnaiyah Ramajayam Medical College',
+                'M.A.M. Medical College',
+                'K.S.R. Medical College',
+                'Gnanamani Medical College'
+            ],
+            arts: [
+                'Bishop Heber Coollege, Trichy',
+                'St. Joseph’s College, Trichy',
+                'Holy Cross College, Trichy',
+                'Bharathidasan Arts College',
+                'Saranathan Arts College',
+                'Vellore Institute of Technology - Trichy Campus',
+                'M.A.M. College of Arts',
+                'K.S.R. Arts College',
+                'Ponnaiyah Ramajayam Arts College',
+                'Government Arts College, Trichy',
+                'Loyola Arts College'
+            ],
+            science: [
+                'Bharathidasan University',
+                'National Institute of Technology (NIT) Trichy',
+                'St. Joseph’s College, Trichy',
+                'Holy Cross College, Trichy',
+                'Saranathan College of Science',
+                'M.A.M. College of Science',
+                'Ponnaiyah Ramajayam Science College',
+                'Sri Venkateswara Science College',
+                'Government Science College, Trichy',
+                'K.S.R. Science College'
+            ]
+        };
+
+        function getParameterByName(name) {
+            const regex = new RegExp(`[?&]${name}=([^&]*)`);
+            const results = regex.exec(window.location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        const department = getParameterByName('department');
+        const collegeList = document.getElementById('collegeList');
+
+        if (department && colleges[department]) {
+            colleges[department].forEach(college => {
+                const li = document.createElement('li');
+                li.textContent = college;
+                collegeList.appendChild(li);
+            });
+        } else {
+            collegeList.innerHTML = '<li>No colleges found for this department.</li>';
+        }
+    </script>
+</body>
+</html>

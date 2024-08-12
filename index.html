@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Department</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        select, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Your Department</h1>
+        <form id="departmentForm">
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="" disabled selected>Select Department</option>
+                <option value="law">Law</option>
+                <option value="engineering">Engineering</option>
+                <option value="medical">Medical</option>
+                <option value="arts">Arts</option>
+                <option value="science">Science</option>
+            </select>
+            <button type="submit">Show Colleges</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('departmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const department = document.getElementById('department').value;
+            if (department) {
+                window.location.href = `colleges.html?department=${department}`;
+            }
+        });
+    </script>
+</body>
+</html>
